@@ -52,5 +52,34 @@ Will this link have isActive === true?
 ```
 A3. No, again because of `end`. With `end` attribute comparison of the pathname will be with exact `to` attribute.
 
+## Exercise 3
 
-Also, share your navigation menu component when you reply. I want to review how you've implemented NavLink before we proceed to programmatic navigation with useNavigate.
+Q1. Consider:
+```typescript
+const value = { isActive: false };
+
+console.log(value && "active");
+
+```
+
+What will be printed, and why?
+A1. active because !!value is alway true. !!{} always true.
+
+Q2. Consider:
+```typescript
+const value = { isActive: false };
+
+const { isActive } = value;
+
+console.log(isActive && "active");
+```
+
+What will be printed?
+A2. false
+
+Q3. Why is <Outlet /> necessary when using a parent layout route with child routes?
+A3. Outlet provides the location in the parent component's JSX where the matched child route should render
+
+Q4. Please share your updated App.tsx showing how you've connected PageTemplate to the Home, Products, and Orders routes.
+
+I want to verify that your parent-child route configuration is correct before proceeding.
