@@ -18,6 +18,13 @@ const PageTemplate = () => {
           Products
         </NavLink>
         <NavLink
+          to="/products/new"
+          className={({ isActive }) => (isActive ? "active" : "")}
+          end
+        >
+          Create Product
+        </NavLink>
+        <NavLink
           to="/orders"
           className={({ isActive }) => (isActive ? "active" : "")}
           end
