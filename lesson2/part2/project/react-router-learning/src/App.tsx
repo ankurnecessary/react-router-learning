@@ -9,15 +9,18 @@ import ProductDetails from "./pages/ProductDetails";
 import OrderItem from "./pages/OrderItem";
 import OfferDetails from "./pages/OfferDetails";
 import FileViewer from "./pages/FileViewer";
+import ProductsLayout from "./pages/ProductsLayout";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<PageTemplate />}>
         <Route index element={<Home />} />
-        <Route path="products" element={<Products />} />
-        <Route path="products/new" element={<CreateProduct />} />
-        <Route path="products/:productId" element={<ProductDetails />} />
+        <Route path="products" element={<ProductsLayout />}>
+          <Route index element={<Products />} />
+          <Route path="new" element={<CreateProduct />} />
+          <Route path=":productId" element={<ProductDetails />} />
+        </Route>
         <Route path="orders" element={<Orders />} />
         <Route path="orders/:orderId/items/:itemId" element={<OrderItem />} />
         <Route path="offers/:offerId?" element={<OfferDetails />} />
