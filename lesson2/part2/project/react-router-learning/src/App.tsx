@@ -8,6 +8,7 @@ import CreateProduct from "./pages/CreateProduct";
 import ProductDetails from "./pages/ProductDetails";
 import OrderItem from "./pages/OrderItem";
 import OfferDetails from "./pages/OfferDetails";
+import FileViewer from "./pages/FileViewer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="orders" element={<Orders />} />
         <Route path="orders/:orderId/items/:itemId" element={<OrderItem />} />
         <Route path="offers/:offerId?" element={<OfferDetails />} />
+        <Route path="files/*" element={<FileViewer />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
