@@ -8,7 +8,7 @@ What is params[`*`] for /files/documents/reports/2026.pdf?
 A2. documents/reports/2026.pdf
 
 Q3. Does files/* match /files? If so, what is the splat value?
-A3. Yes it will match `files/*`. Here splat value will be undefined.
+A3. Yes it will match `files/*`. Here splat value will be "".
 
 Q4. Suppose you define:
 <Route path="products/:productId" element={<ProductDetails />} />
