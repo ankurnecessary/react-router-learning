@@ -1,5 +1,5 @@
 Q1. For /products/101, which components in the route hierarchy will render?
-A1. <ProductDetails />
+A1. <PageTemplate /> -> <ProductsLayout /> -> <ProductDetails /> 
 
 Q2. What happens if you remove <Outlet /> from ProductsLayout?
 A2. It will render only heading "Products Section" and not the components tied to the route definition.
