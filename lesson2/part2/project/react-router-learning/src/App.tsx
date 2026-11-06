@@ -10,16 +10,18 @@ import OrderItem from "./pages/OrderItem";
 import OfferDetails from "./pages/OfferDetails";
 import FileViewer from "./pages/FileViewer";
 import ProductsLayout from "./pages/ProductsLayout";
-
+import TempProductPathlessLayout from "./pages/ProductPathlessLayout"
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PageTemplate />}>
-        <Route index element={<Home />} />
+      <Route element={<PageTemplate />}>
+        <Route path="/" element={<Home />} />
         <Route path="products" element={<ProductsLayout />}>
-          <Route index element={<Products />} />
-          <Route path="new" element={<CreateProduct />} />
-          <Route path=":productId" element={<ProductDetails />} />
+          <Route element={<TempProductPathlessLayout />}>
+            <Route index element={<Products />} />
+            <Route path="new" element={<CreateProduct />} />
+            <Route path=":productId" element={<ProductDetails />} />
+          </Route>
         </Route>
         <Route path="orders" element={<Orders />} />
         <Route path="orders/:orderId/items/:itemId" element={<OrderItem />} />
