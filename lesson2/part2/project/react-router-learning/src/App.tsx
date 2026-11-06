@@ -10,7 +10,8 @@ import OrderItem from "./pages/OrderItem";
 import OfferDetails from "./pages/OfferDetails";
 import FileViewer from "./pages/FileViewer";
 import ProductsLayout from "./pages/ProductsLayout";
-import TempProductPathlessLayout from "./pages/TempProductPathlessLayout"
+import TempProductPathlessLayout from "./pages/TempProductPathlessLayout";
+import SearchProducts from "./pages/SearchProducts";
 function App() {
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App() {
             <Route path=":productId" element={<ProductDetails />} />
           </Route>
         </Route>
+        <Route path="search-products" element={<SearchProducts />} />
         <Route path="orders" element={<Orders />} />
         <Route path="orders/:orderId/items/:itemId" element={<OrderItem />} />
         <Route path="offers/:offerId?" element={<OfferDetails />} />
