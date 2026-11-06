@@ -10,7 +10,7 @@ import OrderItem from "./pages/OrderItem";
 import OfferDetails from "./pages/OfferDetails";
 import FileViewer from "./pages/FileViewer";
 import ProductsLayout from "./pages/ProductsLayout";
-import TempProductPathlessLayout from "./pages/ProductPathlessLayout"
+import TempProductPathlessLayout from "./pages/TempProductPathlessLayout"
 function App() {
   return (
     <Routes>
