@@ -12,6 +12,7 @@ import FileViewer from "./pages/FileViewer";
 import ProductsLayout from "./pages/ProductsLayout";
 import TempProductPathlessLayout from "./pages/TempProductPathlessLayout";
 import SearchProducts from "./pages/SearchProducts";
+import LegacyProduct from "./pages/LegacyProduct";
 function App() {
   return (
     <Routes>
@@ -25,6 +26,7 @@ function App() {
             <Route path=":productId" element={<ProductDetails />} />
           </Route>
         </Route>
+        <Route path="legacy-product" element={<LegacyProduct />} />
         <Route path="search-products" element={<SearchProducts />} />
         <Route path="orders" element={<Orders />} />
         <Route path="orders/:orderId/items/:itemId" element={<OrderItem />} />
