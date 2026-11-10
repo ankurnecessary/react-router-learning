@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
@@ -17,6 +17,7 @@ function App() {
     <Routes>
       <Route element={<PageTemplate />}>
         <Route path="/" element={<Home />} />
+        <Route path="old-products" element={<Navigate to='/products' replace />} />
         <Route path="products" element={<ProductsLayout />}>
           <Route element={<TempProductPathlessLayout />}>
             <Route index element={<Products />} />
