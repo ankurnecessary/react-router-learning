@@ -27,6 +27,10 @@ function App() {
           </Route>
         </Route>
         <Route path="legacy-product" element={<LegacyProduct />} />
+        <Route
+          path="legacy-product-demo"
+          element={<LegacyProduct productId="101" />}
+        />
         <Route path="search-products" element={<SearchProducts />} />
         <Route path="orders" element={<Orders />} />
         <Route path="orders/:orderId/items/:itemId" element={<OrderItem />} />
