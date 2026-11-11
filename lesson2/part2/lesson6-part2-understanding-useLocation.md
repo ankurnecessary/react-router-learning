@@ -4,16 +4,14 @@ A1. We can useLocation() to fetch route related information like pathname, searc
 Q2. For this URL:
 /products/101?sort=price&page=2#reviews
 
-
 What are the values of:
 location.pathname;
 location.search;
 location.hash;
-A2. 
+A2.
 location.pathname; = /products/101
 location.search; = ?sort=price&page=2
 location.hash; = #reviews
-
 
 Q3. What's the difference between location.search and useSearchParams()?
 A3. location.search will fetch the whole search part of the URL i.e. location.search; = ?sort=price&page=2 but useSearchParams() helps in fetching individual values like sort and page.
@@ -25,7 +23,25 @@ Q5. If React Router navigates from /products to /orders, will a component using 
 A5. Yes, useLocation() will always fetch the details of the current URL.
 
 Q6. What is the general purpose of location.state, and is its value visible in the browser URL?
-A6. It's general purpose is to fetch some object which has been added to route declaration. 
+A6.
+
+```
+<Link
+  to="/products/101"
+  state={ source: "search-results" }
+>
+  View Product
+</Link>
+```
+
+The destination component can read:
+
+```
+const location = useLocation();
+
+console.log(location.state);
+// { source: "search-results" }
+```
 
 Complete the exercise and share your LocationDetails.tsx and answers to Q1–Q6.
 
