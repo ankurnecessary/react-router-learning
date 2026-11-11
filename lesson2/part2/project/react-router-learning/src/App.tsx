@@ -13,6 +13,7 @@ import ProductsLayout from './pages/ProductsLayout';
 import TempProductPathlessLayout from './pages/TempProductPathlessLayout';
 import SearchProducts from './pages/SearchProducts';
 import LegacyProduct from './pages/LegacyProduct';
+import LocationDetails from './pages/LocationDetails';
 function App() {
   return (
     <Routes>
@@ -35,6 +36,7 @@ function App() {
           element={<LegacyProduct productId='101' />}
         />
         <Route path='search-products' element={<SearchProducts />} />
+        <Route path='location-details' element={<LocationDetails />} />
         <Route path='orders' element={<Orders />} />
         <Route path='orders/:orderId/items/:itemId' element={<OrderItem />} />
         <Route path='offers/:offerId?' element={<OfferDetails />} />
