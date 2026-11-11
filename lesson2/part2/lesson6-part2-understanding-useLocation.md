@@ -31,6 +31,7 @@ Complete the exercise and share your LocationDetails.tsx and answers to Q1–Q6.
 
 LocationDetails.tsx
 
+```
 import { useLocation } from "react-router";
 
 const LocationDetails = () => {
@@ -45,3 +46,4 @@ const LocationDetails = () => {
 };
 
 export default LocationDetails;
+```
