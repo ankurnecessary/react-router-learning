@@ -20,15 +20,12 @@ A3. / - home
 
 Q4. What problem might occur if we omit replace from a redirecting route?
 
-A4. Omitting replace creates another history entry. Pressing Back can return to /old-products, which redirects forward to /products again.
-
-This can create an unpleasant navigation loop.
+A4. Omitting replace creates another history entry. Pressing Back can return to /old-products, which redirects forward to /products again. This can create an unpleasant navigation loop.
 
 Q5. Given this route hierarchy:
 <Route path="products" element={<ProductsLayout />}>
   <Route path=":productId" element={<ProductDetails />} />
 </Route>
-
 
 Inside ProductDetails, what URL does the following resolve to?
 <Navigate to=".." replace />

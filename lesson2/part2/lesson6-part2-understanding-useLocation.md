@@ -14,7 +14,7 @@ location.search; = ?sort=price&page=2
 location.hash; = #reviews
 
 Q3. What's the difference between location.search and useSearchParams()?
-A3. location.search will fetch the whole search part of the URL i.e. location.search; = ?sort=price&page=2 but useSearchParams() helps in fetching individual values like sort and page.
+A3. location.search will fetch the whole search part of the URL i.e. location.search; = ?sort=price&page=2 but useSearchParams() helps in fetching individual values of sort and page.
 
 Q4. Does location.search include the ? character?
 A4. Yes
@@ -42,6 +42,8 @@ const location = useLocation();
 console.log(location.state);
 // { source: "search-results" }
 ```
+
+Its value is not available in browser url.
 
 Complete the exercise and share your LocationDetails.tsx and answers to Q1–Q6.
 
