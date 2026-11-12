@@ -19,11 +19,42 @@ navigate("/products", { replace: true });
 A6. REPLACE
 
 Q7. Why might useNavigationType() be useful in a React dashboard?
-A7. I don't know
+A7. IMPORTANT: Imagine your Products page contains a long list of products.
+
+The user scrolls down, opens a product, then presses Back.
+
+You might want to restore their previous scroll position instead of starting at the top.
+
+The navigation type can help you distinguish between:
+
+- A new navigation (PUSH).
+- A replacement navigation (REPLACE).
+- Returning to an existing history entry (POP).
+  For example:
+
+```
+import { useNavigationType } from "react-router";
+
+const Products = () => {
+  const navigationType = useNavigationType();
+
+  return (
+    <p>
+      {navigationType === "POP"
+        ? "Navigation to an existing history entry"
+        : "New or replacement navigation"}
+    </p>
+  );
+};
+```
+
+This doesn't restore scrolling automatically. It simply provides information you could use as part of a scroll-restoration strategy.
+
+Also remember: POP alone doesn't tell you whether the user pressed Back or Forward, or whether this is the initial page load.
 
 Complete the exercise and share your NavigationDetails.tsx, any changes to PageTemplate.tsx, and answers to Q1–Q7.
 
-NavigationDetails.tsx
+## NavigationDetails.tsx
 
 ```
 import { useLocation, useNavigate, useNavigationType } from 'react-router';
@@ -54,7 +85,7 @@ const NavigationDetails = () => {
 export default NavigationDetails;
 ```
 
-PageTemplate.tsx
+## PageTemplate.tsx
 
 ```
 import { NavLink, Outlet } from 'react-router';
