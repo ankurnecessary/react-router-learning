@@ -4,14 +4,16 @@ import { MemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import App from '../src/App.tsx';
 
+const renderRoute = (route: string[]) => {
+  render(
+    <MemoryRouter initialEntries={route}>
+      <App />
+    </MemoryRouter>,
+  );
+};
 describe('Routing', () => {
   it('/products renders the Products page', () => {
-    const app = (
-      <MemoryRouter initialEntries={['/products']}>
-        <App />
-      </MemoryRouter>
-    );
-    render(app);
+    renderRoute(['/products']);
     expect(
       screen.getByRole('heading', { name: 'Products' }),
     ).toBeInTheDocument();
@@ -19,12 +21,7 @@ describe('Routing', () => {
 
   it('Clicking a link from Home navigates to Products', async () => {
     const user = userEvent.setup();
-    const app = (
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
-    );
-    render(app);
+    renderRoute(['/']);
     expect(screen.getByRole('heading', { name: 'Home' })).toBeInTheDocument();
     await user.click(screen.getByRole('link', { name: 'Products' }));
     expect(
@@ -33,34 +30,19 @@ describe('Routing', () => {
   });
 
   it('/products/101 displays product ID 101', () => {
-    const app = (
-      <MemoryRouter initialEntries={['/products/101']}>
-        <App />
-      </MemoryRouter>
-    );
-    render(app);
+    renderRoute(['/products/101']);
     expect(screen.getByText('101')).toBeInTheDocument();
   });
 
   it('/unknown-route renders NotFound', () => {
-    const app = (
-      <MemoryRouter initialEntries={['/unknown-route']}>
-        <App />
-      </MemoryRouter>
-    );
-    render(app);
+    renderRoute(['/unknown-route']);
     expect(
       screen.getByRole('heading', { name: '404 - Page not found' }),
     ).toBeInTheDocument();
   });
 
   it('/old-products redirects to /products using <Navigate replace />', async () => {
-    const app = (
-      <MemoryRouter initialEntries={['/old-products']}>
-        <App />
-      </MemoryRouter>
-    );
-    render(app);
+    renderRoute(['/old-products']);
     expect(
       await screen.findByRole('heading', { name: 'Products' }),
     ).toBeInTheDocument();
