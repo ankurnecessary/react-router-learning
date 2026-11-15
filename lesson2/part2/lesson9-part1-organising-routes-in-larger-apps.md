@@ -15,6 +15,31 @@ A4. All feature specific components and files will stay at one place.
 Q5. Why should you be careful when splitting nested routes across multiple <Routes> components?
 A5. Because indented group of routes within <Routes> will not make the routing behave in the same way as it was doing without it.
 
+### Feedback
+
+The important distinction isn't indentation or placing routes in separate files.
+
+It's the difference between one nested route configuration and multiple descendant <Routes> components.
+
+For example, this maintains the same route hierarchy:
+
+```
+const productRoutes = (
+  <Route path="products" element={<ProductsLayout />}>
+    <Route index element={<Products />} />
+    <Route path=":productId" element={<ProductDetails />} />
+  </Route>
+);
+
+const AppRoutes = () => (
+  <Routes>
+    {productRoutes}
+  </Routes>
+);
+```
+
+However, creating a separate <Routes> component inside ProductsLayout changes how descendant route matching works.
+
 Q6. After extracting routes into AppRoutes.tsx, why is running your existing routing tests useful?
 A6. Because all the routes were working as is even after making these changes. And in <App /> we are importing <AppRoutes />, which is the same code that we were using earlier.
 

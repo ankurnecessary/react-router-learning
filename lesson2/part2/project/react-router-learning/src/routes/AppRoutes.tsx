@@ -1,19 +1,19 @@
 import { Navigate, Route, Routes } from 'react-router';
-import CreateProduct from './pages/CreateProduct';
-import FileViewer from './pages/FileViewer';
-import Home from './pages/Home';
-import LegacyProduct from './pages/LegacyProduct';
-import LocationDetails from './pages/LocationDetails';
-import NotFound from './pages/NotFound';
-import OfferDetails from './pages/OfferDetails';
-import OrderItem from './pages/OrderItem';
-import Orders from './pages/Orders';
-import PageTemplate from './pages/PageTemplate';
-import ProductDetails from './pages/ProductDetails';
-import Products from './pages/Products';
-import ProductsLayout from './pages/ProductsLayout';
-import SearchProducts from './pages/SearchProducts';
-import TempProductPathlessLayout from './pages/TempProductPathlessLayout';
+import CreateProduct from '../pages/CreateProduct';
+import FileViewer from '../pages/FileViewer';
+import Home from '../pages/Home';
+import LegacyProduct from '../pages/LegacyProduct';
+import LocationDetails from '../pages/LocationDetails';
+import NotFound from '../pages/NotFound';
+import OfferDetails from '../pages/OfferDetails';
+import OrderItem from '../pages/OrderItem';
+import Orders from '../pages/Orders';
+import PageTemplate from '../pages/PageTemplate';
+import ProductDetails from '../pages/ProductDetails';
+import Products from '../pages/Products';
+import ProductsLayout from '../pages/ProductsLayout';
+import SearchProducts from '../pages/SearchProducts';
+import TempProductPathlessLayout from '../pages/TempProductPathlessLayout';
 
 const AppRoutes = () => {
   return (
