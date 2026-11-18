@@ -40,7 +40,6 @@ const Products = () => {
             >
               {product.name}
             </Link>
-            |<Link to={`/products/${product.id}/edit`}>Edit</Link>
           </li>
         ))}
       </ul>

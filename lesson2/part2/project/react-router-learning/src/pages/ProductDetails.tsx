@@ -13,6 +13,7 @@ const ProductDetails = () => {
       <h1>Product Detail</h1>
       <p>{productId}</p>
       <p>Source: {navigationState?.source ?? 'Direct visit'}</p>
+      <Link to='edit'>Edit Product</Link>
       <Link to='..'>Back to products</Link>
     </div>
   );
