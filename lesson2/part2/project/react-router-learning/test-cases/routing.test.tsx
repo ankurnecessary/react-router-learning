@@ -34,11 +34,36 @@ describe('Routing', () => {
     expect(screen.getByText('101')).toBeInTheDocument();
   });
 
+  it('/products/101/edit renders Edit Product with ID 101', async () => {
+    const user = userEvent.setup();
+    renderRoute(['/products/101/edit']);
+    expect(
+      screen.getByRole('heading', { name: 'Product Edit page', level: 1 }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('101')).toBeInTheDocument();
+    await user.click(
+      screen.getByRole('button', {
+        name: 'Cancel',
+      }),
+    );
+    expect(screen.getByRole('heading', { name: 'Product Detail', level: 1 }));
+  });
+
   it('/unknown-route renders NotFound', () => {
     renderRoute(['/unknown-route']);
     expect(
       screen.getByRole('heading', { name: '404 - Page not found' }),
     ).toBeInTheDocument();
+  });
+
+  it('/old-catalog redirects to /products', () => {
+    renderRoute(['/old-catalog']);
+    expect(
+      screen.getByRole('heading', {
+        name: 'Products',
+        level: 1,
+      }),
+    );
   });
 
   it('/old-products redirects to /products using <Navigate replace />', async () => {
