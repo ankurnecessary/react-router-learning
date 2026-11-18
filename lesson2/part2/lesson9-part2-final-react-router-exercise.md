@@ -84,7 +84,6 @@ export default AppRoutes;
 ## Products.tsx
 
 ```
-
 import { Link, useNavigate, useSearchParams } from 'react-router';
 
 const Products = () => {
@@ -107,11 +106,13 @@ const Products = () => {
   const nextPageHandler = () => {
     setSearchParams((prev) => {
       const newParams = new URLSearchParams(prev);
-      const newPageNumber: string =
-        String(Number(newParams.get('page')) + 1) || '0';
-      newParams.set('page', newPageNumber);
+
+      const currentPage = Number(newParams.get('page'));
+      const validPage =
+        Number.isInteger(currentPage) && currentPage >= 1 ? currentPage : 1;
+
+      newParams.set('page', String(validPage + 1));
       return newParams;
-      // Task B: Products list
     });
   };
 
@@ -132,9 +133,7 @@ const Products = () => {
       </ul>
       <p>Search params (search): {search}</p>
       <p>Search params (page): {page}</p>
-      {page !== 'not present' && (
-        <button onClick={nextPageHandler}>Next page</button>
-      )}
+      <button onClick={nextPageHandler}>Next page</button>
       <button
         onClick={() => {
           clickHandler(102);
@@ -202,6 +201,7 @@ export default ProductEdit;
 ## routing.test.tsx
 
 ```
+
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
@@ -232,7 +232,21 @@ describe('Routing', () => {
       screen.getByRole('heading', { name: 'Products' }),
     ).toBeInTheDocument();
   });
+  it('clicking a product opens its details page', async () => {
+    const user = userEvent.setup();
 
+    renderRoute(['/products']);
+
+    await user.click(screen.getByRole('link', { name: 'Laptop' }));
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Product Detail',
+      }),
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('101')).toBeInTheDocument();
+  });
   it('/products/101 displays product ID 101', () => {
     renderRoute(['/products/101']);
     expect(screen.getByText('101')).toBeInTheDocument();
@@ -250,7 +264,9 @@ describe('Routing', () => {
         name: 'Cancel',
       }),
     );
-    expect(screen.getByRole('heading', { name: 'Product Detail', level: 1 }));
+    expect(
+      screen.getByRole('heading', { name: 'Product Detail', level: 1 }),
+    ).toBeInTheDocument();
   });
 
   it('/unknown-route renders NotFound', () => {
@@ -267,7 +283,7 @@ describe('Routing', () => {
         name: 'Products',
         level: 1,
       }),
-    );
+    ).toBeInTheDocument();
   });
 
   it('/old-products redirects to /products using <Navigate replace />', async () => {
@@ -277,4 +293,3 @@ describe('Routing', () => {
     ).toBeInTheDocument();
   });
 });
-```

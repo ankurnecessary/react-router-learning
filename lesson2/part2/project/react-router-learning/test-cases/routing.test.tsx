@@ -28,7 +28,21 @@ describe('Routing', () => {
       screen.getByRole('heading', { name: 'Products' }),
     ).toBeInTheDocument();
   });
+  it('clicking a product opens its details page', async () => {
+    const user = userEvent.setup();
 
+    renderRoute(['/products']);
+
+    await user.click(screen.getByRole('link', { name: 'Laptop' }));
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Product Detail',
+      }),
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('101')).toBeInTheDocument();
+  });
   it('/products/101 displays product ID 101', () => {
     renderRoute(['/products/101']);
     expect(screen.getByText('101')).toBeInTheDocument();
@@ -46,7 +60,9 @@ describe('Routing', () => {
         name: 'Cancel',
       }),
     );
-    expect(screen.getByRole('heading', { name: 'Product Detail', level: 1 }));
+    expect(
+      screen.getByRole('heading', { name: 'Product Detail', level: 1 }),
+    ).toBeInTheDocument();
   });
 
   it('/unknown-route renders NotFound', () => {
@@ -63,7 +79,7 @@ describe('Routing', () => {
         name: 'Products',
         level: 1,
       }),
-    );
+    ).toBeInTheDocument();
   });
 
   it('/old-products redirects to /products using <Navigate replace />', async () => {

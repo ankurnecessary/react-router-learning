@@ -20,11 +20,13 @@ const Products = () => {
   const nextPageHandler = () => {
     setSearchParams((prev) => {
       const newParams = new URLSearchParams(prev);
-      const newPageNumber: string =
-        String(Number(newParams.get('page')) + 1) || '0';
-      newParams.set('page', newPageNumber);
+
+      const currentPage = Number(newParams.get('page'));
+      const validPage =
+        Number.isInteger(currentPage) && currentPage >= 1 ? currentPage : 1;
+
+      newParams.set('page', String(validPage + 1));
       return newParams;
-      // Task B: Products list
     });
   };
 
@@ -45,9 +47,7 @@ const Products = () => {
       </ul>
       <p>Search params (search): {search}</p>
       <p>Search params (page): {page}</p>
-      {page !== 'not present' && (
-        <button onClick={nextPageHandler}>Next page</button>
-      )}
+      <button onClick={nextPageHandler}>Next page</button>
       <button
         onClick={() => {
           clickHandler(102);
