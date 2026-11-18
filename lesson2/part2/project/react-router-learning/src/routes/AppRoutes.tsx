@@ -14,6 +14,7 @@ import Products from '../pages/Products';
 import ProductsLayout from '../pages/ProductsLayout';
 import SearchProducts from '../pages/SearchProducts';
 import TempProductPathlessLayout from '../pages/TempProductPathlessLayout';
+import ProductEdit from '../pages/ProductEdit';
 
 const AppRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const AppRoutes = () => {
             <Route index element={<Products />} />
             <Route path='new' element={<CreateProduct />} />
             <Route path=':productId' element={<ProductDetails />} />
+            <Route path=':productId/edit' element={<ProductEdit />} />
           </Route>
         </Route>
         <Route path='legacy-product' element={<LegacyProduct />} />
@@ -42,6 +44,7 @@ const AppRoutes = () => {
         <Route path='orders/:orderId/items/:itemId' element={<OrderItem />} />
         <Route path='offers/:offerId?' element={<OfferDetails />} />
         <Route path='files/*' element={<FileViewer />} />
+        <Route path='old-catalog' element={<Navigate to={'/products'} replace />} />
         <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
