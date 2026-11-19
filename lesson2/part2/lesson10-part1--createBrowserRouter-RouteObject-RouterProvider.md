@@ -4,6 +4,12 @@ A1. RouteObject is just a typescript type which validates the object's shape. It
 Q2. What does createBrowserRouter(routes) return, conceptually?
 A2. It creates brower based router configuration on the basis of array passed to it as argument.
 
+More precisely:
+
+`const router = createBrowserRouter(routes);`
+
+routes is the configuration. router is the actual router instance that manages matching, navigation, browser history and Data Mode operations.
+
 Q3. What is the purpose of <RouterProvider router={router} />?
 A3. RouterProvider provides the router or links the routes with the application. It connects the actual route in the address bar to the components. So that every route will work as needed.
 
