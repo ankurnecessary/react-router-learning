@@ -20,7 +20,7 @@ const routes: RouteObject[] = [
     Component: PageTemplate,
     children: [
       { path: '/', Component: Home },
-      { path: 'old-products', element: <Navigate to='/products' /> },
+      { path: 'old-products', element: <Navigate to='/products' replace /> },
       {
         path: 'products',
         Component: ProductsLayout,

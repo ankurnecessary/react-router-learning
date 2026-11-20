@@ -11,6 +11,20 @@ A3. Without <Outlet /> rendering none of the children routes will load.
 
 Q4. For the route /products/101/edit, what would useParams() return?
 A4. `const {productId} = useParams();`
+For `/products/101/edit`, assuming the route definition is:
+`{ path: ':productId/edit', Component: ProductEdit }`
+
+Then:
+
+```
+const params = useParams();
+```
+
+returns an object equivalent to:
+
+```
+{ productId: '101' }
+```
 
 Q5. Does changing from Declarative Mode to Data Mode change how Link, useNavigate or useParams work?
 A5. No.
@@ -18,6 +32,62 @@ A5. No.
 Q6. Why might it be useful to attach a loader to the parent products route rather than attaching independent loaders to every child route? Think about shared data requirements. We haven't covered loader implementation yet, so reason conceptually.
 A6. If there is a data requirement that needs to be loaded on all the child route then /products route is the place. But if there is a nything specific to the child routes then loader should be called separately on the child routes.
 
+Q7. In your route configuration, why does path: 'products' work correctly even though it doesn't begin with /?
+A7. This is because React Router supports relative route paths in nested route configurations.
+
+Consider your route hierarchy:
+
+```
+const routes: RouteObject[] = [
+  {
+    Component: PageTemplate,
+    children: [
+      {
+        path: '/',
+        Component: Home,
+      },
+      {
+        path: 'products',
+        Component: ProductsLayout,
+        children: [
+          {
+            index: true,
+            Component: Products,
+          },
+          {
+            path: ':productId',
+            Component: ProductDetails,
+          },
+        ],
+      },
+    ],
+  },
+];
+```
+
+Your PageTemplate is pathless, meaning it doesn't add any URL segment.
+
+Therefore, products is resolved at the root of the URL hierarchy:
+/products
+
+And :productId is resolved relative to its parent route:
+/products/:productId
+
+Q8. Is this valid, and why?
+
+```
+{
+  path: 'dashboard',
+  children: [
+    {
+      path: '/products',
+      Component: Products,
+    },
+  ],
+}
+```
+
+A8. An absolute child path must start with the complete path of its parent. Therefore, /products is invalid under dashboard. A valid absolute child path would be /dashboard/products.
 Complete the exercise and share your updated DataRoutes.tsx and Q1–Q6 answers.
 
 I have deleted DataRouter.tsx and added it's code in DataRoutes.tsx
