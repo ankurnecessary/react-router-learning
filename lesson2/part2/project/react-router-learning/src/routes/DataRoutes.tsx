@@ -15,7 +15,7 @@ import OfferDetails from '../pages/OfferDetails';
 import FileViewer from '../pages/FileViewer';
 import NotFound from '../pages/NotFound';
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     Component: PageTemplate,
     children: [
