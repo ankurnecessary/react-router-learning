@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
+import { createBrowserRouter, Navigate, type LoaderFunctionArgs, type RouteObject } from 'react-router';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import Orders from '../pages/Orders';
@@ -14,21 +14,50 @@ import OrderItem from '../pages/OrderItem';
 import OfferDetails from '../pages/OfferDetails';
 import FileViewer from '../pages/FileViewer';
 import NotFound from '../pages/NotFound';
+import ProductErrorDemo from '../pages/ProductErrorDemo';
+import ProductErrorPage from '../pages/errors/ProductErrorPage';
+import AppErrorPage from '../pages/errors/AppErrorPage';
 
 export const routes: RouteObject[] = [
   {
     Component: PageTemplate,
+    ErrorBoundary: AppErrorPage,
     children: [
       { path: '/', Component: Home },
       { path: 'old-products', element: <Navigate to='/products' replace /> },
       {
         path: 'products',
         Component: ProductsLayout,
+        ErrorBoundary: ProductErrorPage,
         children: [
           { index: true, Component: Products },
           { path: 'new', Component: CreateProduct },
           { path: ':productId', Component: ProductDetails },
           { path: ':productId/edit', Component: ProductEdit },
+          {
+            path: 'error-demo',
+            Component: ProductErrorDemo,
+            loader: ({ request }: LoaderFunctionArgs) => {
+              const url = new URL(request.url);
+              const status = Number(url.searchParams.get('status'));
+              if (status === 404) {
+                throw new Response('Product does not exist', {
+                  status,
+                  statusText: 'Product not found',
+                });
+              } else if (status === 503) {
+                throw new Response('Product service not working', {
+                  status,
+                  statusText: 'Product service unavailable',
+                });
+              }
+
+              throw new Response('Unexpected product error', {
+                status,
+                statusText: 'Unexpected product error',
+              });
+            },
+          },
         ],
       },
       { path: 'legacy-product', Component: LegacyProduct },
