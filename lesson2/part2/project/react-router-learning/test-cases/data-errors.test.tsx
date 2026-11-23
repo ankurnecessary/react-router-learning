@@ -42,13 +42,17 @@ describe('ProductErrorDemo.tsx', () => {
   });
 
   it("should show message 'Something went wrong!' when status is other than 404 and 503", async () => {
-    renderRoute(['/products/error-demo?status=599']);
+    const user = userEvent.setup();
+    const router = renderRoute(['/products/error-demo?status=599']);
     expect(
       await screen.findByRole('heading', {
         name: 'Something went wrong!',
         level: 1,
       }),
     ).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Back' }));
+    expect(await screen.findByRole('heading', { name: 'Products', level: 1 }));
+    expect(router.state.location.pathname).toBe('/products');
   });
 
   it('should render /products/101 perfectly after all the changes', async () => {
@@ -57,5 +61,15 @@ describe('ProductErrorDemo.tsx', () => {
       await screen.findByRole('heading', { name: 'Product Detail', level: 1 }),
     ).toBeInTheDocument();
     expect(routes.state.location.pathname).toBe('/products/101');
+  });
+
+  it("should show message 'Something went wrong!' when /products/render-error-demo is rendered", async () => {
+    renderRoute(['/products/render-error-demo']);
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Something went wrong!',
+        level: 1,
+      }),
+    ).toBeInTheDocument();
   });
 });

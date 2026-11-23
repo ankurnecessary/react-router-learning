@@ -1,4 +1,9 @@
-import { createBrowserRouter, Navigate, type LoaderFunctionArgs, type RouteObject } from 'react-router';
+import {
+  createBrowserRouter,
+  Navigate,
+  type LoaderFunctionArgs,
+  type RouteObject,
+} from 'react-router';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import Orders from '../pages/Orders';
@@ -17,6 +22,7 @@ import NotFound from '../pages/NotFound';
 import ProductErrorDemo from '../pages/ProductErrorDemo';
 import ProductErrorPage from '../pages/errors/ProductErrorPage';
 import AppErrorPage from '../pages/errors/AppErrorPage';
+import RenderErrorDemo from '../pages/RenderErrorDemo';
 
 export const routes: RouteObject[] = [
   {
@@ -34,6 +40,7 @@ export const routes: RouteObject[] = [
           { path: 'new', Component: CreateProduct },
           { path: ':productId', Component: ProductDetails },
           { path: ':productId/edit', Component: ProductEdit },
+          { path: 'render-error-demo', Component: RenderErrorDemo },
           {
             path: 'error-demo',
             Component: ProductErrorDemo,
