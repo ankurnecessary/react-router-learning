@@ -17,15 +17,18 @@ const renderRoute = (initialEntries: InitialEntry[]) => {
 describe('ProductErrorDemo.tsx', () => {
   it("should show message '404 Product not found' when status is 404", async () => {
     const user = userEvent.setup();
-    renderRoute(['/products/error-demo?status=404']);
+    const router = renderRoute(['/products/error-demo?status=404']);
     expect(
       await screen.findByRole('heading', {
         name: '404 Product not found',
         level: 1,
       }),
     ).toBeInTheDocument();
-    user.click(screen.getByRole('button', { name: /back/i }));
-    expect(await screen.findByRole('heading', { name: 'Products', level: 1 }));
+    await user.click(screen.getByRole('button', { name: /back/i }));
+    expect(
+      await screen.findByRole('heading', { name: 'Products', level: 1 }),
+    ).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/products');
   });
 
   it("should show message '503 Product service unavailable' when status is 503", async () => {
@@ -42,7 +45,7 @@ describe('ProductErrorDemo.tsx', () => {
     renderRoute(['/products/error-demo?status=599']);
     expect(
       await screen.findByRole('heading', {
-        name: '599 Unexpected product error',
+        name: 'Something went wrong!',
         level: 1,
       }),
     ).toBeInTheDocument();

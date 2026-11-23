@@ -52,10 +52,7 @@ export const routes: RouteObject[] = [
                 });
               }
 
-              throw new Response('Unexpected product error', {
-                status,
-                statusText: 'Unexpected product error',
-              });
+              throw new Error('Unexpected product error');
             },
           },
         ],
