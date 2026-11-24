@@ -23,6 +23,7 @@ import ProductErrorDemo from '../pages/ProductErrorDemo';
 import ProductErrorPage from '../pages/errors/ProductErrorPage';
 import AppErrorPage from '../pages/errors/AppErrorPage';
 import RenderErrorDemo from '../pages/RenderErrorDemo';
+import productsLoader from '../loaders/productsLoader';
 
 export const routes: RouteObject[] = [
   {
@@ -36,7 +37,7 @@ export const routes: RouteObject[] = [
         Component: ProductsLayout,
         ErrorBoundary: ProductErrorPage,
         children: [
-          { index: true, Component: Products },
+          { index: true, Component: Products, loader: productsLoader },
           { path: 'new', Component: CreateProduct },
           { path: ':productId', Component: ProductDetails },
           { path: ':productId/edit', Component: ProductEdit },
