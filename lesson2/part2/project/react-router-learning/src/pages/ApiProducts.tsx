@@ -1,16 +1,17 @@
 import { useLoaderData } from 'react-router';
-import type { ProductsResponse } from '../types/product';
+import type ProductLoader from '../loaders/productsLoader';
 
 const ApiProducts = () => {
-  const data: ProductsResponse = useLoaderData();
+  const data = useLoaderData<typeof ProductLoader>();
   return (
-    <div>
+    <>
+      <h1>API Products</h1>
       <ul>
         {data.products.map((product) => (
           <li key={product.id}>{product.title}</li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

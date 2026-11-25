@@ -1,7 +1,7 @@
-import type { LoaderFunction, LoaderFunctionArgs } from 'react-router';
+import type { LoaderFunctionArgs } from 'react-router';
 import type { ProductsResponse } from '../types/product';
 
-const productsLoader: LoaderFunction = async ({
+const productsLoader = async ({
   request,
 }: LoaderFunctionArgs): Promise<ProductsResponse> => {
   const response = await fetch('https://dummyjson.com/products?limit=10', {
