@@ -1,5 +1,4 @@
 import {
-  createBrowserRouter,
   Navigate,
   type LoaderFunctionArgs,
   type RouteObject,
@@ -87,5 +86,3 @@ export const routes: RouteObject[] = [
     ],
   },
 ];
-
-export const router = createBrowserRouter(routes);
