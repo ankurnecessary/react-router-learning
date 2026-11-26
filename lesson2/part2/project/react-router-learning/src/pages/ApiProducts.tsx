@@ -1,10 +1,11 @@
 import { useLoaderData, useSearchParams } from 'react-router';
 import type ProductLoader from '../loaders/productsLoader';
+import parsePage from '../utils/parsePage';
 
 const ApiProducts = () => {
   const data = useLoaderData<typeof ProductLoader>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get('page')) || 1;
+  const page = parsePage(searchParams.get('page'));
   const limit = 10;
 
   const nextClickHandler = () => {

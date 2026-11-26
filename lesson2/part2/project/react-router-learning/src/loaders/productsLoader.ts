@@ -1,5 +1,6 @@
 import type { LoaderFunctionArgs } from 'react-router';
 import type { ProductsResponse } from '../types/product';
+import parsePage from '../utils/parsePage';
 
 const productsLoader = async ({
   request,
@@ -7,7 +8,7 @@ const productsLoader = async ({
   const limit = 10;
 
   const url = new URL(request.url);
-  const page = Number(url.searchParams.get('page') ?? '1');
+  const page = parsePage(url.searchParams.get('page'));
   const skip = (page - 1) * limit;
 
   const response = await fetch(
