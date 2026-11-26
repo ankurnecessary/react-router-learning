@@ -24,6 +24,7 @@ import AppErrorPage from '../pages/errors/AppErrorPage';
 import RenderErrorDemo from '../pages/RenderErrorDemo';
 import productsLoader from '../loaders/productsLoader';
 import ApiProducts from '../pages/ApiProducts';
+import { productErrorDemoLoader } from '../loaders/productErrorDemoLoader';
 
 export const routes: RouteObject[] = [
   {
@@ -50,23 +51,7 @@ export const routes: RouteObject[] = [
           {
             path: 'error-demo',
             Component: ProductErrorDemo,
-            loader: ({ request }: LoaderFunctionArgs) => {
-              const url = new URL(request.url);
-              const status = Number(url.searchParams.get('status'));
-              if (status === 404) {
-                throw new Response('Product does not exist', {
-                  status,
-                  statusText: 'Product not found',
-                });
-              } else if (status === 503) {
-                throw new Response('Product service not working', {
-                  status,
-                  statusText: 'Product service unavailable',
-                });
-              }
-
-              throw new Error('Unexpected product error');
-            },
+            loader: productErrorDemoLoader,
           },
         ],
       },
