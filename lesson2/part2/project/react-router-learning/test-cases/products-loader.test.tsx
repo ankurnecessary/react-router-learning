@@ -14,8 +14,8 @@ const renderRoute = (initialEntries: InitialEntry[]) => {
 };
 
 describe('ApiProducts', () => {
-  it("should load products' list via /products/api-products", async () => {
-    renderRoute(['/products/api-products']);
+  it("should load products' list via /products/api-products?page=1", async () => {
+    renderRoute(['/products/api-products?page=1']);
     expect(
       await screen.findByText('Essence Mascara Lash Princess'),
     ).toBeInTheDocument();
