@@ -4,7 +4,7 @@ import NavigationDetails from './NavigationDetails';
 const PageTemplate = () => {
   return (
     <div>
-      <nav>
+      <nav style={{ display: 'flex', justifyContent: 'space-evenly' }}>
         <NavLink
           to='/'
           className={({ isActive }) => (isActive ? 'active' : '')}
@@ -17,6 +17,13 @@ const PageTemplate = () => {
           end
         >
           Products
+        </NavLink>
+        <NavLink
+          to='/products/api-products'
+          className={({ isActive }) => (isActive ? 'active' : '')}
+          end
+        >
+          API Products
         </NavLink>
         <NavLink
           to='/products/new'
